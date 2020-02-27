@@ -7,11 +7,29 @@ class VitalList extends Component {
     constructor(props){
         super(props)
         this.state = {
-           vitalsets: [] 
+           vitalsets: [],
+           message: null
         }
     }
 
     componentDidMount = () => {
+        this.refreshVitalSets()
+    }
+
+    deleteVitalSet(id){
+        let username = AuthenticationService.getLoggedInUserName()
+        VitalDataService.deleteVitalSet(username, id)   
+        .then (
+            response => {
+                this.setState({
+                    message: `Deletion successful`
+                })
+                this.refreshVitalSets()
+            }
+        )     
+    }
+
+    refreshVitalSets = () => {
         let username = AuthenticationService.getLoggedInUserName()
         VitalDataService.retrieveAllVitalSets(username)
         .then(
@@ -28,7 +46,8 @@ class VitalList extends Component {
     render(){
         return(
             <div>
-                <h1>Vital Sets</h1>
+                <h1 className="heading">Vital Sets</h1>
+                {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table table-responsive">
                         <thead>
@@ -40,6 +59,8 @@ class VitalList extends Component {
                                 <th>SpO2</th>
                                 <th>Temperature</th>
                                 <th>Time Stamp</th>
+                                <th>Delete</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +75,7 @@ class VitalList extends Component {
                                             <td>{vitalset.spo2}</td>
                                             <td>{vitalset.temperature}</td>
                                             <td>{vitalset.timeStamp}</td>
+                                            <td><button className="btn btn-warning" onClick={() => this.deleteVitalSet(vitalset.id)}>Delete</button></td>
                                         </tr>
                                 )
                             }

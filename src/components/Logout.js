@@ -5,7 +5,7 @@ class Logout extends Component {
     render(){
         return(
         <div className='center'>
-            <h3>You are logged out.</h3>
+            <h1 className="heading">You are logged out.</h1>
             <p>Click <Link to='/login'>here</Link> to log back in.</p>    
         </div>
         )

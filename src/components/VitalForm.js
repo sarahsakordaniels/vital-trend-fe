@@ -59,7 +59,7 @@ class VitalForm extends Component {
 
         return(
             <div>
-                <h1>Record Vital Set</h1>
+                <h1 className="heading">Record Vital Set</h1>
                 <div className="container">
                     <Formik 
                         initialValues={{
