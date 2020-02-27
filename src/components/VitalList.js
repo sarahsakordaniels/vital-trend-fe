@@ -16,7 +16,9 @@ class VitalList extends Component {
         VitalDataService.retrieveAllVitalSets(username)
         .then(
             response => {
-                this.setState({
+                console.log(response);
+
+                this.setState({                    
                     vitalsets: response.data
                 })
             }
@@ -28,7 +30,7 @@ class VitalList extends Component {
             <div>
                 <h1>Vital Sets</h1>
                 <div className="container">
-                    <table className="table">
+                    <table className="table table-responsive">
                         <thead>
                             <tr>
                                 <th>Patient Name</th>
@@ -36,6 +38,8 @@ class VitalList extends Component {
                                 <th>Diastolic BP</th>
                                 <th>Pulse</th>
                                 <th>SpO2</th>
+                                <th>Temperature</th>
+                                <th>Time Stamp</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +48,12 @@ class VitalList extends Component {
                                     vitalset =>
                                         <tr key={vitalset.id}>
                                             <td>{vitalset.patientName}</td>
+                                            <td>{vitalset.systolic}</td>
+                                            <td>{vitalset.diastolic}</td>
+                                            <td>{vitalset.pulse}</td>
+                                            <td>{vitalset.spo2}</td>
+                                            <td>{vitalset.temperature}</td>
+                                            <td>{vitalset.timeStamp}</td>
                                         </tr>
                                 )
                             }
