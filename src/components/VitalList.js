@@ -12,6 +12,17 @@ class VitalList extends Component {
         }
     }
 
+    componentWillUnmount() {
+        console.log('componentWillUnmount')
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate')
+        console.log(nextProps)
+        console.log(nextState)
+        return true
+    }
+
     componentDidMount = () => {
         this.refreshVitalSets()
     }
@@ -83,7 +94,7 @@ class VitalList extends Component {
                                             <td>{vitalset.pulse}</td>
                                             <td>{vitalset.spo2}</td>
                                             <td>{vitalset.temperature}</td>
-                                            <td>{moment(vitalset.timeStamp).format('lll')}</td>
+                                            <td>{moment(vitalset.timeStamp).format('YYYY-MM-DD')}</td>
                                             <td><button className="btn btn-success" onClick={() => this.updateVitalSet(vitalset.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteVitalSet(vitalset.id)}>Delete</button></td>
                                         </tr>

@@ -10,40 +10,16 @@ class VitalForm extends Component {
         this.state={
             id: this.props.match.params.id,
             patientName:'',
-            systolic: 0,
-            diastolic: 0,
-            spo2: 0,
-            pulse: 0,
-            respirations: 0,
-            temperature: 0,
-            timeStamp: moment(new Date()).format('lll')
+            systolic: null,
+            diastolic: null,
+            spo2: null,
+            pulse: null,
+            respirations: null,
+            temperature: null,
+            timeStamp: moment(new Date()).format('YYYY-MM-DD')
         }
     }
 
-    onSubmit = (values) => {
-        let username = AuthenticationService.getLoggedInUserName()
-
-        let vitalset = {
-            id: this.state.id,
-            patientName: values.patientName,
-            systolic: values.systolic,
-            diastolic: values.diastolic,
-            spo2: values.spo2,
-            pulse: values.pulse,
-            respirations: values.respirations,
-            temperature: values.temperature,
-            timeStamp: values.timeStamp
-            }
-
-            if (this.state.id === -1){
-                VitalDataService.addVitalSet(username, vitalset)
-                .then(() => this.props.history.push('/vitallist'))
-            } else {
-                VitalDataService.updateVitalSet(username, this.state.id, vitalset)
-                .then(() => this.props.history.push('/vitallist'))
-            }       
-        }
-    
     componentDidMount = () => {
         if (this.state.id === -1) {
             return
@@ -58,41 +34,65 @@ class VitalForm extends Component {
                 pulse: response.data.pulse,
                 respirations: response.data.respirations,
                 temperature: response.data.temperature,
-                timeStamp: response.data.timeStamp
+                timeStamp: moment(response.data.timeStamp).format('YYYY-MM-DD')
             }))
     }
 
+    onSubmit = (values) => {
+        let username = AuthenticationService.getLoggedInUserName()
+        console.log("im being clicked");
 
-    validate = (values) => {
-        let errors = {}
-        if(values.patientName === ""){
-            errors.patientName = "Please enter the patient's name."
+        let vitalset = {
+            id: this.state.id,
+            patientName: values.patientName,
+            systolic: values.systolic,
+            diastolic: values.diastolic,
+            spo2: values.spo2,
+            pulse: values.pulse,
+            respirations: values.respirations,
+            temperature: values.temperature,
+            timeStamp: values.timeStamp
+            }
+            if (this.state.id === -1) {
+                VitalDataService.addVitalSet(username, vitalset)
+                    .then(() => this.props.history.push('/vitallist'))
+            } else {
+                VitalDataService.updateVitalSet(username, this.state.id, vitalset)
+                    .then(() => this.props.history.push('/vitallist'))
+            }
+            
         }
-        if(values.systolic === ""){
-            errors.systolic = "Please enter a value for systolic blood pressure."
-        }
-        if(values.diastolic === ""){
-            errors.diastolic = "Please enter a value for diastolic blood pressure."
-        } 
-        if(values.pulse === ""){
-            errors.pulse = "Please enter a value for pulse."
-        } 
-        if(values.spo2 === ""){
-            errors.spo2 = "Please enter a value for spo2."
-        } 
-        if(values.respirations === ""){
-            errors.respirations = "Please enter a value for respirations."
-        } 
-        if(values.temperature === ""){
-            errors.temperature = "Please enter a value for temperature."
-        }
+    
 
-        if(!moment(values.date).isValid()){
-            errors.date = "Please enter a valid date and time."
-        }
-        console.log(values);
-        return errors
-    }
+    // validate = (values) => {
+    //     let errors = {}
+    //     if(values.patientName === ""){
+    //         errors.patientName = "Please enter the patient's name."
+    //     }
+    //     if(values.systolic === ""){
+    //         errors.systolic = "Please enter a value for systolic blood pressure."
+    //     }
+    //     if(values.diastolic === ""){
+    //         errors.diastolic = "Please enter a value for diastolic blood pressure."
+    //     } 
+    //     if(values.pulse === ""){
+    //         errors.pulse = "Please enter a value for pulse."
+    //     } 
+    //     if(values.spo2 === ""){
+    //         errors.spo2 = "Please enter a value for spo2."
+    //     } 
+    //     if(values.respirations === ""){
+    //         errors.respirations = "Please enter a value for respirations."
+    //     } 
+    //     if(values.temperature === ""){
+    //         errors.temperature = "Please enter a value for temperature."
+    //     }
+
+    //     if(!!moment(values.timeStamp).isValid()){
+    //         errors.date = "Please enter a valid date and time."
+    //     }
+    //     return errors
+    // }
 
     render(){
   
@@ -113,11 +113,11 @@ class VitalForm extends Component {
                             temperature,
                             timeStamp
                         }}
-                        onSubmit={this.onSubmit}
                         validateOnChange={false}
                         validateOnBlur={false}
                         validate={this.validate}
                         enableReinitialize={true}
+                        onSubmit={this.onSubmit}
                     >
                         {
                             (props) => (
@@ -160,9 +160,9 @@ class VitalForm extends Component {
                                     <ErrorMessage name="timeStamp" component="div" className="alert alert-warning" />
                                     <fieldset className="form-group">
                                         <label>Date & Time</label>
-                                        <Field className="form-control" type="text" name="timeStamp"/>
+                                        <Field className="form-control" type="date" name="timeStamp"/>
                                     </fieldset>
-                                    <button className="btn btn-success" type="submit">Submit</button>
+                                    <button className="btn btn-success" type = "submit">Submit</button>
                                 </Form>
                             )
                         }
