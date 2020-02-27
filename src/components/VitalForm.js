@@ -16,8 +16,8 @@ class VitalForm extends Component {
             pulse: null,
             respirations: null,
             temperature: null,
-            date: moment(new Date()).format('YYYY-MM-DD'),
-            time: moment(new Date()).format('hh:mm:ss')
+            date: '',
+            time: ''
         }
     }
 
@@ -35,8 +35,8 @@ class VitalForm extends Component {
                 pulse: response.data.pulse,
                 respirations: response.data.respirations,
                 temperature: response.data.temperature,
-                date: moment(response.data.date).format('YYYY-MM-DD'),
-                time: moment(response.data.time).format('hh:mm:ss')
+                date: response.data.date,
+                time: response.data.time
 
             }))
     }
