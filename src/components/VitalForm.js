@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import moment from 'moment'
+import VitalDataService from '../api/VitalDataService'
+import AuthenticationService from './AuthenticationService'
 
 class VitalForm extends Component {
     constructor(props){
         super(props)
         this.state={
-            id: 0,
+            id: this.props.match.params.id,
             patientName:'',
             systolic: 0,
             diastolic: 0,
@@ -19,8 +21,47 @@ class VitalForm extends Component {
     }
 
     onSubmit = (values) => {
-        console.log(values);
+        let username = AuthenticationService.getLoggedInUserName()
+
+        let vitalset = {
+            id: this.state.id,
+            patientName: values.patientName,
+            systolic: values.systolic,
+            diastolic: values.diastolic,
+            spo2: values.spo2,
+            pulse: values.pulse,
+            respirations: values.respirations,
+            temperature: values.temperature,
+            timeStamp: values.timeStamp
+            }
+
+            if (this.state.id === -1){
+                VitalDataService.addVitalSet(username, vitalset)
+                .then(() => this.props.history.push('/vitallist'))
+            } else {
+                VitalDataService.updateVitalSet(username, this.state.id, vitalset)
+                .then(() => this.props.history.push('/vitallist'))
+            }       
+        }
+    
+    componentDidMount = () => {
+        if (this.state.id === -1) {
+            return
+        }
+        let username = AuthenticationService.getLoggedInUserName()
+        VitalDataService.retrieveVitalSet(username, this.state.id)
+            .then(response => this.setState({
+                patientName: response.data.patientName,
+                systolic: response.data.systolic,
+                diastolic: response.data.diastolic,
+                spo2: response.data.spo2,
+                pulse: response.data.pulse,
+                respirations: response.data.respirations,
+                temperature: response.data.temperature,
+                timeStamp: response.data.timeStamp
+            }))
     }
+
 
     validate = (values) => {
         let errors = {}
@@ -55,7 +96,7 @@ class VitalForm extends Component {
 
     render(){
   
-        let {timeStamp} = this.state
+        let {patientName, systolic, diastolic, pulse, spo2, respirations, temperature, timeStamp} = this.state
 
         return(
             <div>
@@ -63,19 +104,20 @@ class VitalForm extends Component {
                 <div className="container">
                     <Formik 
                         initialValues={{
-                            patientName: "", 
-                            systolic: "",
-                            diastolic: "",
-                            spo2: "",
-                            pulse: "",
-                            respirations: "",
-                            temperature: "",
+                            patientName,
+                            systolic,
+                            diastolic,
+                            spo2,
+                            pulse,
+                            respirations,
+                            temperature,
                             timeStamp
                         }}
                         onSubmit={this.onSubmit}
                         validateOnChange={false}
                         validateOnBlur={false}
                         validate={this.validate}
+                        enableReinitialize={true}
                     >
                         {
                             (props) => (

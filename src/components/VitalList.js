@@ -16,7 +16,7 @@ class VitalList extends Component {
         this.refreshVitalSets()
     }
 
-    deleteVitalSet(id){
+    deleteVitalSet = (id) => {
         let username = AuthenticationService.getLoggedInUserName()
         VitalDataService.deleteVitalSet(username, id)   
         .then (
@@ -27,6 +27,14 @@ class VitalList extends Component {
                 this.refreshVitalSets()
             }
         )     
+    }
+
+    updateVitalSet = (id) => {
+        this.props.history.push(`/vitalset/${id}`)
+    }
+
+    addVitalSet = () => {
+        this.props.history.push(`/vitalset/-1`)
     }
 
     refreshVitalSets = () => {
@@ -59,6 +67,7 @@ class VitalList extends Component {
                                 <th>SpO2</th>
                                 <th>Temperature</th>
                                 <th>Time Stamp</th>
+                                <th>Update</th>
                                 <th>Delete</th>
 
                             </tr>
@@ -74,7 +83,8 @@ class VitalList extends Component {
                                             <td>{vitalset.pulse}</td>
                                             <td>{vitalset.spo2}</td>
                                             <td>{vitalset.temperature}</td>
-                                            <td>{vitalset.timeStamp}</td>
+                                            <td>{moment(vitalset.timeStamp).format('lll')}</td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateVitalSet(vitalset.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteVitalSet(vitalset.id)}>Delete</button></td>
                                         </tr>
                                 )
@@ -82,6 +92,7 @@ class VitalList extends Component {
                         </tbody>
                     </table>
                     <div className="row">
+                        <button className="btn btn-success" onClick={this.addVitalSet}>Add Vital Set</button>
                     </div>
                 </div>
             </div>

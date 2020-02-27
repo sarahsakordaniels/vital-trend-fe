@@ -20,7 +20,8 @@ class App extends Component {
             <Route path="/login" exact component={Login} /> 
             <Route path="/" exact component={Main} /> 
             <Route path="/home/:name" exact component={Home} /> 
-            <Route path="/vitalform" exact component={VitalForm} /> 
+            <Route path="/vitalset/:id" exact component={VitalForm} />
+            {/* <Route path="/vitalform" exact component={VitalForm} />  */}
             <Route path="/vitallist" exact component={VitalList} /> 
             <Route path="/logout" exact component={Logout} />
           </Switch> 
