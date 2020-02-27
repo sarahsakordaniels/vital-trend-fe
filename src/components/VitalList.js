@@ -77,7 +77,8 @@ class VitalList extends Component {
                                 <th>Pulse</th>
                                 <th>SpO2</th>
                                 <th>Temperature</th>
-                                <th>Time Stamp</th>
+                                <th>Date</th>
+                                <th>Time</th>
                                 <th>Update</th>
                                 <th>Delete</th>
 
@@ -94,7 +95,8 @@ class VitalList extends Component {
                                             <td>{vitalset.pulse}</td>
                                             <td>{vitalset.spo2}</td>
                                             <td>{vitalset.temperature}</td>
-                                            <td>{moment(vitalset.timeStamp).format('YYYY-MM-DD')}</td>
+                                            <td>{moment(vitalset.date).format('YYYY-MM-DD')}</td>
+                                            <td>{vitalset.time}</td>
                                             <td><button className="btn btn-success" onClick={() => this.updateVitalSet(vitalset.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteVitalSet(vitalset.id)}>Delete</button></td>
                                         </tr>

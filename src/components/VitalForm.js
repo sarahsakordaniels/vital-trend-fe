@@ -16,7 +16,8 @@ class VitalForm extends Component {
             pulse: null,
             respirations: null,
             temperature: null,
-            timeStamp: moment(new Date()).format('YYYY-MM-DD')
+            date: '',
+            time: ''
         }
     }
 
@@ -34,7 +35,9 @@ class VitalForm extends Component {
                 pulse: response.data.pulse,
                 respirations: response.data.respirations,
                 temperature: response.data.temperature,
-                timeStamp: moment(response.data.timeStamp).format('YYYY-MM-DD')
+                date: response.data.date,
+                time: response.data.time
+
             }))
     }
 
@@ -51,7 +54,8 @@ class VitalForm extends Component {
             pulse: values.pulse,
             respirations: values.respirations,
             temperature: values.temperature,
-            timeStamp: values.timeStamp
+            date: values.date,
+            time: values.time
             }
             if (this.state.id === -1) {
                 VitalDataService.addVitalSet(username, vitalset)
@@ -88,7 +92,7 @@ class VitalForm extends Component {
     //         errors.temperature = "Please enter a value for temperature."
     //     }
 
-    //     if(!!moment(values.timeStamp).isValid()){
+    //     if(!moment(values.date).isValid()){
     //         errors.date = "Please enter a valid date and time."
     //     }
     //     return errors
@@ -96,7 +100,7 @@ class VitalForm extends Component {
 
     render(){
   
-        let {patientName, systolic, diastolic, pulse, spo2, respirations, temperature, timeStamp} = this.state
+        let {patientName, systolic, diastolic, pulse, spo2, respirations, temperature, date, time} = this.state
 
         return(
             <div>
@@ -111,7 +115,8 @@ class VitalForm extends Component {
                             pulse,
                             respirations,
                             temperature,
-                            timeStamp
+                            date,
+                            time
                         }}
                         validateOnChange={false}
                         validateOnBlur={false}
@@ -157,10 +162,15 @@ class VitalForm extends Component {
                                         <label>Temperature</label>
                                         <Field className="form-control" type="number" name="temperature"/>
                                     </fieldset>
-                                    <ErrorMessage name="timeStamp" component="div" className="alert alert-warning" />
+                                    <ErrorMessage name="date" component="div" className="alert alert-warning" />
                                     <fieldset className="form-group">
-                                        <label>Date & Time</label>
-                                        <Field className="form-control" type="date" name="timeStamp"/>
+                                        <label>Date</label>
+                                        <Field className="form-control" type="date" name="date"/>
+                                    </fieldset>
+                                    <ErrorMessage name="time" component="div" className="alert alert-warning" />
+                                    <fieldset className="form-group">
+                                        <label>Time</label>
+                                        <Field className="form-control" type="time" name="time"/>
                                     </fieldset>
                                     <button className="btn btn-success" type = "submit">Submit</button>
                                 </Form>
