@@ -7,14 +7,14 @@ class VitalForm extends Component {
         super(props)
         this.state={
             id: 0,
+            patientName:'',
             systolic: 0,
             diastolic: 0,
             spo2: 0,
             pulse: 0,
             respirations: 0,
             temperature: 0,
-            date: moment(new Date()).format('YYYY-MM-DD'),
-            time: moment(new Date()).format('LTS')
+            timeStamp: moment(new Date()).format('lll')
         }
     }
 
@@ -24,6 +24,9 @@ class VitalForm extends Component {
 
     validate = (values) => {
         let errors = {}
+        if(values.patientName === ""){
+            errors.patientName = "Please enter the patient's name."
+        }
         if(values.systolic === ""){
             errors.systolic = "Please enter a value for systolic blood pressure."
         }
@@ -44,7 +47,7 @@ class VitalForm extends Component {
         }
 
         if(!moment(values.date).isValid()){
-            errors.date = "Please enter a valid date."
+            errors.date = "Please enter a valid date and time."
         }
         console.log(values);
         return errors
@@ -52,7 +55,7 @@ class VitalForm extends Component {
 
     render(){
   
-        let {systolic, diastolic, spo2, pulse, respirations, temperature, date, time} = this.state
+        let {timeStamp} = this.state
 
         return(
             <div>
@@ -60,14 +63,14 @@ class VitalForm extends Component {
                 <div className="container">
                     <Formik 
                         initialValues={{
+                            patientName: "", 
                             systolic: "",
                             diastolic: "",
                             spo2: "",
                             pulse: "",
                             respirations: "",
                             temperature: "",
-                            date, 
-                            time
+                            timeStamp
                         }}
                         onSubmit={this.onSubmit}
                         validateOnChange={false}
@@ -77,6 +80,11 @@ class VitalForm extends Component {
                         {
                             (props) => (
                                 <Form>
+                                     <ErrorMessage name="patientName" component="div" className="alert alert-warning" />
+                                    <fieldset className="form-group">
+                                        <label>Patient Name</label>
+                                        <Field className="form-control" type="text" name="patientName"/>
+                                    </fieldset>
                                     <ErrorMessage name="systolic" component="div" className="alert alert-warning" />
                                     <fieldset className="form-group">
                                         <label>Systolic Blood Pressure</label>
@@ -107,15 +115,10 @@ class VitalForm extends Component {
                                         <label>Temperature</label>
                                         <Field className="form-control" type="number" name="temperature"/>
                                     </fieldset>
-                                    <ErrorMessage name="date" component="div" className="alert alert-warning" />
+                                    <ErrorMessage name="timeStamp" component="div" className="alert alert-warning" />
                                     <fieldset className="form-group">
-                                        <label>Date</label>
-                                        <Field className="form-control" type="date" name="date"/>
-                                    </fieldset>
-                                    <ErrorMessage name="time" component="div" className="alert alert-warning" />
-                                    <fieldset className="form-group">
-                                        <label>Time</label>
-                                        <Field className="form-control" type="text" name="time"/>
+                                        <label>Date & Time</label>
+                                        <Field className="form-control" type="text" name="timeStamp"/>
                                     </fieldset>
                                     <button className="btn btn-success" type="submit">Submit</button>
                                 </Form>

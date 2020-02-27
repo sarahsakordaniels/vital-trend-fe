@@ -18,7 +18,7 @@ class Header extends Component {
                     <ul className="navbar-nav">
                     {isUserLoggedIn && <li className="nav-link"><Link to="/home" className="header-link-color">Home</Link></li>}
                     {isUserLoggedIn && <li className="nav-link"><Link to="/vitalform" className="header-link-color">Add Vitals</Link></li>}
-                    {isUserLoggedIn && <li className="nav-link"><Link to="/vitals" className="header-link-color">View Vitals</Link></li>}
+                    {isUserLoggedIn && <li className="nav-link"><Link to="/vitallist" className="header-link-color">View Vitals</Link></li>}
                     </ul>
 
                     <ul className="navbar-nav navbar-collapse justify-content-end">

@@ -5,8 +5,9 @@ import Footer from './components/Footer';
 import Logout from './components/Logout';
 import Login from './components/Login';
 import VitalForm from './components/VitalForm';
-import Vitals from './components/Vitals';
+import VitalList from './components/VitalList';
 import Main from './components/Main';
+import Home from './components/Home';
 
 class App extends Component {
   
@@ -18,8 +19,9 @@ class App extends Component {
           <Switch>
             <Route path="/login" exact component={Login} /> 
             <Route path="/" exact component={Main} /> 
+            <Route path="/home/:name" exact component={Home} /> 
             <Route path="/vitalform" exact component={VitalForm} /> 
-            <Route path="/vitals" exact component={Vitals} /> 
+            <Route path="/vitallist" exact component={VitalList} /> 
             <Route path="/logout" exact component={Logout} />
           </Switch> 
           <Footer />
