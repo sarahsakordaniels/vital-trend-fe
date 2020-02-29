@@ -27,7 +27,7 @@ Reviewing tens, possibly hundreds, of vital sign sets for different patients ove
 This application will eventually implement charts for the user to easier visualize patient improvement or decline based on different vital signs. As a visual learner myself, a lot of numbers can begin to bleed together aftere a long shift. Charts and other forms of data visualiztion will help keep clinicians on top of patient progress and promote patient safety.
 
 # Installation 
-1. Begin by cloning and following the directions for the backend... coming soon :)
+1. Begin by cloning and install the backend [here.](https://github.com/sarahsakordaniels/vital-trend-be)
 
 2. After cloning the frontend repo, run npm install to install any dependencies.
 
