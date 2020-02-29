@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import AuthenticationService from './AuthenticationService'
 
+
 class Login extends Component {
     constructor(props){
         super(props)
@@ -19,15 +20,30 @@ class Login extends Component {
     }
 
     loginClick = (event) => {
-        if(this.state.username==="sarah" && this.state.password==="sarah"){
-            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
-            this.props.history.push(`/home/${this.state.username}`)
-        }else{
-            this.setState({
-                showSuccessMessage: false,
-                hasLoginFailed: true
-            })  
-        } 
+        // if(this.state.username==="sarah" && this.state.password==="sarah"){
+        //     AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
+        //     this.props.history.push(`/home/${this.state.username}`)
+        // }else{
+        //     this.setState({
+        //         showSuccessMessage: false,
+        //         hasLoginFailed: true
+        //     })  
+        // } 
+        AuthenticationService.executeBasicAuthenticationService(this.state.username, this.state.password)
+        .then(
+            () => {
+                AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
+                this.props.history.push(`/home/${this.state.username}`)
+            }
+        )
+        .catch(
+            () => {
+                this.setState({
+                    showSuccessMessage: false,
+                    hasLoginFailed: true
+                })  
+            }
+        )
     }
 
     render(){

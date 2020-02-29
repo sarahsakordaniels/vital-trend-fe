@@ -17,12 +17,11 @@ class Home extends Component {
 
         return (
             <div>
-                <h1>Welcome!</h1>
-                <div className="container">
-                    Welcome {this.props.match.params.name}.
-                    You can manage your stuff <Link to="/vitallist">here</Link>.
+                <h1 className="heading">What would you like to do?</h1>
+                <div className="container center">
+                <button type="button" class="btn btn-outline-info button-container"><Link to="/vitallist" style={{ textDecoration: 'none', color:'black' }}>View Vital Sets</Link></button>
+                <button type="button" class="btn btn-outline-info button-container"><Link to="/vitalset/-1" style={{ textDecoration: 'none', color:'black'}}>Add Vital Set</Link></button>
                 </div>
-                <button onClick={this.getVitalDataService}>Click Me</button>
             </div>
         )
     }

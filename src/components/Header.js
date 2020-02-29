@@ -17,7 +17,7 @@ class Header extends Component {
                 <Link to='/' className="navbar-brand">VitalTrends</Link>
                     <ul className="navbar-nav">
                     {isUserLoggedIn && <li className="nav-link"><Link to="/home" className="header-link-color">Home</Link></li>}
-                    {isUserLoggedIn && <li className="nav-link"><Link to="/vitalform" className="header-link-color">Add Vitals</Link></li>}
+                    {isUserLoggedIn && <li className="nav-link"><Link to="/vitalset/-1" className="header-link-color">Add Vitals</Link></li>}
                     {isUserLoggedIn && <li className="nav-link"><Link to="/vitallist" className="header-link-color">View Vitals</Link></li>}
                     </ul>
 
