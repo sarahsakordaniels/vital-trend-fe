@@ -82,6 +82,6 @@ This application will eventually implement charts for the user to easier visuali
 # Contact Me
 sarahsakordaniels@gmail.com
 
-[LinkedIn](www.linkedin.com/in/sarahsakordaniels)
+[LinkedIn](https://www.linkedin.com/in/sarahsakordaniels/)
 
 [Medium](www.medium.com/@sarahsakordaniels)
