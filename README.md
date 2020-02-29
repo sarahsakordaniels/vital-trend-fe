@@ -34,15 +34,28 @@ This application will eventually implement charts for the user to easier visuali
 ### Login
 ![](login.gif)
 
+
+
 ### View Vitals
 ![](viewvitals.gif)
+
+
 
 ### Add Vital Set
 ![](addvitalset.gif)
 
-### Manage Vitals
-![](deleteset.gif)
+
+
+### Update Vitals
 ![](update.gif)
+
+
+
+### Delete Vitals
+![](deleteset.gif)
+
+
 
 ### Logout
 ![](logout.gif)
+
