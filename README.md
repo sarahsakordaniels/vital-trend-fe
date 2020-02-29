@@ -4,7 +4,7 @@
 
 ## What is Vital Trends?
 
-*Vital Trends is an application for recording and visualizing patient vital sign trends.*
+**Vital Trends is an application for recording and visualizing patient vital sign trends.**
 
 As a healthcare provider, mananging patient care can be overwhelming and requires a lot of attention to detail. There are a lot of factors that go into a well-oiled human machine - lab values and vital signs within a healthy range, physical therapy and exercise, and psychological and social care, just to name a few. 
 
@@ -23,7 +23,7 @@ Patients can also use this application to track their own vital signs, whether i
 
 ## What Inspired This Application? 
 
-I'm a neurology ICU nurse. In an ICU, we have patients hooked up to monitoring equipment 24/7. While this is great to provide a constant insight into how the patient is doing, it results in a large amount of data to look over. 
+I'm a neurology ICU nurse. In an ICU, we have patients hooked up to monitoring equipment 24/7. While this is great to provide a constant insight into how the patient is doing, **it results in a large amount of data to look over.**
 
 Reviewing tens, possibly hundreds, of vital sign sets for different patients over the course of a 12-14 hour shift (often at 3am) is difficult. It's tougher to make connections and see potential patient decline.
 
