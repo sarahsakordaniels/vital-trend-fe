@@ -1,8 +1,5 @@
-# Vital Trends
 
-
-
-## What is Vital Trends?
+# What is Vital Trends?
 
 **Vital Trends is an application for recording and visualizing patient vital sign trends.**
 
@@ -21,7 +18,7 @@ Patients can also use this application to track their own vital signs, whether i
 
 
 
-## What Inspired This Application? 
+# What Inspired This Application? 
 
 I'm a neurology ICU nurse. In an ICU, we have patients hooked up to monitoring equipment 24/7. While this is great to provide a constant insight into how the patient is doing, **it results in a large amount of data to look over.**
 
@@ -29,7 +26,7 @@ Reviewing tens, possibly hundreds, of vital sign sets for different patients ove
 
 This application will eventually implement charts for the user to easier visualize patient improvement or decline based on different vital signs. As a visual learner myself, a lot of numbers can begin to bleed together aftere a long shift. Charts and other forms of data visualiztion will help keep clinicians on top of patient progress and promote patient safety.
 
-## Installation 
+# Installation 
 1. Begin by cloning and following the directions for the backend... coming soon :)
 
 2. After cloning the frontend repo, run npm install to install any dependencies.
@@ -37,52 +34,54 @@ This application will eventually implement charts for the user to easier visuali
 3. Run npm start to boot up the application.
 
 
-## Application in Action 
+# Application in Action 
 
-### Login
+## Login
 ![](login.gif)
 
 ---
 
-### View Vitals
+## View Vitals
 ![](viewvitals.gif)
 
 ---
 
-### Add Vital Set
+## Add Vital Set
 ![](addvitalset.gif)
 
 ---
 
-### Update Vitals
+## Update Vitals
 ![](update.gif)
 
 ---
 
-### Delete Vitals
+## Delete Vitals
 ![](deleteset.gif)
 
 ---
 
-### Logout
+## Logout
 ![](logout.gif)
 
 
 
-### Built With
+# Built With
 - **Maven** - dependency management
 - **Spring Boot**- backend Java framework
 - **React** - frontend JavaScript framework
 
 
-## Future Implementations
+# Future Implementations
 - Currently in progress: the user will be able to use charts to visualize patient data.
 - Include more patient data like lab values from blood work. 
 - Include an option  to write comments on patients or a specific vital/vital set.
 - Suggestions welcome!
 
 
-## Contact Me
+# Contact Me
 sarahsakordaniels@gmail.com
+
 [LinkedIn](www.linkedin.com/in/sarahsakordaniels)
+
 [Medium](www.medium.com/@sarahsakordaniels)
